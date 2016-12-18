@@ -11,4 +11,20 @@
     border-radius: 50%;
     display: block;
   }
+
+  .alert {
+    h2 {
+      font-size: 1em;
+      margin-top: 0px;
+    }
+
+    ul {
+      margin-bottom: 0px;
+    }
+
+    li {
+      font-weight: bold;
+    }
+
+  }
 }
