@@ -10,6 +10,9 @@
 
   <body>
   <div class="container-fluid">
+    <% if user_signed_in? %>
+      <%= render 'snippets/sidebar' %>
+    <% end %>
     <%= yield %>
     </div>
   </body>
