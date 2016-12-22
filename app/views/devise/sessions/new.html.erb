@@ -3,6 +3,16 @@
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <% unless devise_error_messages!.empty? %>
+     <div class="alert alert-danger alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <%= devise_error_messages! %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
@@ -14,14 +24,12 @@
   </div>
 
   <% if devise_mapping.rememberable? -%>
-   <div>
-      <div class="checkbox custom-control custom-checkbox">
-        <label>
-          <%= f.check_box :remember_me, {}, '1', '' %>
-          <span class="custom-control-indicator"></span>
-            Remember me
-        </label>
-      </div>
+    <div class="checkbox custom-control custom-checkbox">
+      <label>
+        <%= f.check_box :remember_me, {}, '1', '' %>
+        <span class="custom-control-indicator"></span>
+          Remember me
+      </label>
     </div>
   <% end -%>
 

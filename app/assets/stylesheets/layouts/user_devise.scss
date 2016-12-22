@@ -25,6 +25,16 @@
     li {
       font-weight: bold;
     }
+  }
 
+  //Bootstrap override
+
+  .custom-control {
+    padding-left: 0px;
+  }
+
+  .checkbox {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
