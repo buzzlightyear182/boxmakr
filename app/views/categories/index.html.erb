@@ -11,18 +11,18 @@
     </div>
   </div>
 </div>
-  <div class='row m-t'>
-    <div class='col-sm-4'>
-      <ul class="list-group">
-        <% @categories.each do |category| %>
-        <li class="list-group-item">
-          <%= link_to category.name, category_path(category.id) %>
-          <span style="float:right">
-            <%= number_to_percentage category.tariff_rate*100, precision: 0 %>
-          </span>
-        </li>
-        <% end %>
-      </ul>
-    </div>
+<%= render 'snippets/flash_messages' %>
+<div class='row m-t'>
+  <div class='col-sm-4'>
+    <ul class="list-group">
+      <% @categories.each do |category| %>
+      <li class="list-group-item">
+        <%= link_to category.name, category_path(category.id) %>
+        <span style="float:right">
+          <%= number_to_percentage category.tariff_rate*100, precision: 0 %>
+        </span>
+      </li>
+      <% end %>
+    </ul>
   </div>
 </div>

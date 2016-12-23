@@ -2,6 +2,7 @@
   <div class="col-sm-6">
     <%= f.input :name %>
     <%= f.association :company, input_html: { :class => 'custom-select companies' }  %>
+    <%= f.input :country, prompt: "Please select one", label: "Source country", input_html: { :class => 'custom-select countries' } %>
   </div>
 </div>
 <div class="row">
