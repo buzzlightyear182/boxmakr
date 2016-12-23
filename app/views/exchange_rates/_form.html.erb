@@ -1,0 +1,32 @@
+<div class="row m-t-md">
+  <div class="col-sm-6">
+    <%= f.input :base_currency %>
+    <%= f.input :amount %>
+      <label>Validity Date</label>
+
+    <div class="input-group">
+      <span class="input-group-addon">
+        <span class="icon icon-calendar"></span>
+      </span>
+      <%= f.input :date, as: :string, label: false,
+                        input_html: {
+                        id: 'exchange_rate_date',
+                        class: "form-control datepicker-input",
+                        'data-provide': "datepicker",
+                        style: "width: 200px;" } %>
+    </div>
+
+    <div class="checkbox custom-control custom-checkbox m-t">
+      <label>
+        <%= f.input_field :active, as: :boolean, label: false, inline_label: false %>
+        <span class="custom-control-indicator"></span>
+          Active
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <%= f.button :submit, 'Save', class: 'btn btn-primary m-t-md' %>
+  </div>
+</div>

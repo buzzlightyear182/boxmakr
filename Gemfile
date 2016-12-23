@@ -53,6 +53,8 @@ gem 'country_select'
 gem 'ransack'
 gem 'will_paginate', github: 'jonatack/will_paginate'
 
+gem 'money-rails'
+
 group :development, :test do
 
   gem "letter_opener"
@@ -63,7 +65,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'did_you_mean'
   gem 'pry'
-
+  gem 'binding_of_caller'
   gem 'awesome_print'
 end
 

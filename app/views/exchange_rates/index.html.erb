@@ -1,0 +1,46 @@
+<div class="dashhead m-t">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle"></h6>
+    <h2 class="dashhead-title">Exchange Rates</h2>
+  </div>
+  <div class="text-xs-right">
+    <div class="btn-group btn-group-header">
+      <%= link_to new_exchange_rate_path, :class => 'btn btn-primary-outline' do %>
+        <%= icon('plus') %> New Exchange Rate
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render 'snippets/flash_messages' %>
+<div class='row m-t'>
+  <div class="col-sm-12 table-responsive">
+    <table class="table company-table" data-sort="table">
+      <thead>
+        <tr>
+          <th><%= icon('check') %></th>
+          <th><%= sort_link(@q, :base_currency) %></th>
+          <th>Amount</th>
+          <th><%= sort_link(@q, :date) %></th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @exchange_rates.each do |exchange_rate| %>
+      <tr>
+        <td>
+          <% if exchange_rate.active? %>
+            <%= icon('check', :class => 'text-success') %>
+          <% else %>
+            <%= icon('times', :class => 'text-danger') %>
+          <% end %>
+        </td>
+        <td><%= exchange_rate.base_currency %></td>
+        <td>₱ <%= exchange_rate.amount %></td>
+        <td><%= exchange_rate.date.strftime('%b %d %Y') %></td>
+        <td><%= link_to icon('edit'), edit_exchange_rate_path(exchange_rate.id),'data-turbolinks' => false %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
