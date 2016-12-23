@@ -28,7 +28,7 @@
     <div class="statcard statcard-border p-a">
       <span class="statcard-desc">Source country</span>
       <h3 class="statcard-number">
-        <%= @brand.country_name %>
+        <%= @brand.try(:country_name) %>
       </h3>
     </div>
   </div>

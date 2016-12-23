@@ -40,20 +40,24 @@
   </ul>
 </div>
 <div class='row m-t'>
-  <div class='col-sm-6'>
-    <ul class="list-group">
-      <li class='list-group-header'>List of brands</li>
-      <% @brands.each do |brand| %>
-      <li class="list-group-item">
-        <%= link_to brand.name, brand_path(brand.id) %>
-        <span style="float:right">
-          <%= link_to edit_brand_path(brand.id) do %>
-            <%= icon('edit') %>
-          <% end %>
-        </span>
-      </li>
+  <div class="col-sm-12 table-responsive">
+    <table class="table company-table" data-sort="table">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :name) %></th>
+          <th><%= sort_link(@q, :country) %></th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @brands.each do |brand| %>
+      <tr>
+        <td><%= link_to brand.name, brand_path(brand.id) %></td>
+        <td><%= brand.country_name %></td>
+        <td><%= link_to icon('edit'), edit_brand_path(brand.id),'data-turbolinks' => false %></td>
+      </tr>
       <% end %>
-    </ul>
-  </div>
+      </tbody>
+    </table>
   </div>
 </div>
