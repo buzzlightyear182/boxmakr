@@ -10,19 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223152109) do
+ActiveRecord::Schema.define(version: 20161223172013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "box_types", force: :cascade do |t|
-    t.string  "name",                                 null: false
-    t.integer "price_centavos",       default: 0,     null: false
-    t.string  "price_currency",       default: "PHP", null: false
-    t.integer "target_cost_centavos", default: 0,     null: false
-    t.string  "target_cost_currency", default: "PHP", null: false
-    t.integer "threshold_centavos",   default: 0,     null: false
-    t.string  "threshold_currency",   default: "PHP", null: false
+    t.string  "name",                                null: false
+    t.integer "base_price_centavos", default: 0,     null: false
+    t.string  "base_price_currency", default: "PHP", null: false
+    t.integer "threshold_centavos",  default: 0,     null: false
+    t.string  "threshold_currency",  default: "PHP", null: false
     t.integer "max_item_count"
     t.index ["name"], name: "index_box_types_on_name", using: :btree
   end

@@ -3,8 +3,7 @@ class ExchangeRatesController < ApplicationController
   before_action :find_exchange_rate, except: [:index, :new, :create]
 
   def index
-    @q = ExchangeRate.ransack(params[:q])
-    @exchange_rates = @q.result(distinct: true)
+    @exchange_rates = ExchangeRate.all
   end
 
   def new

@@ -18,9 +18,9 @@
       <thead>
         <tr>
           <th><%= icon('check') %></th>
-          <th><%= sort_link(@q, :base_currency) %></th>
+          <th>Currency</th>
           <th>Amount</th>
-          <th><%= sort_link(@q, :date) %></th>
+          <th>Validity Date</th>
           <th>Edit</th>
         </tr>
       </thead>
@@ -36,7 +36,7 @@
         </td>
         <td><%= exchange_rate.base_currency %></td>
         <td>₱ <%= exchange_rate.amount %></td>
-        <td><%= exchange_rate.date.strftime('%b %d %Y') %></td>
+        <td><%= exchange_rate.date.strftime('%d %b %Y') %></td>
         <td><%= link_to icon('edit'), edit_exchange_rate_path(exchange_rate.id),'data-turbolinks' => false %></td>
       </tr>
       <% end %>

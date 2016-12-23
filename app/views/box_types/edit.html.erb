@@ -2,12 +2,14 @@
   <div class="col-sm-6">
     <div class="dashhead">
       <div class="dashhead-titles">
-        <h2 class="dashhead-title">New Exchange Rate</h2>
+        <h6 class="dashhead-subtitle">Box Type</h6>
+        <h2 class="dashhead-title"><%= @box_type.try(:name) %></h2>
       </div>
     </div>
   </div>
 </div>
-<%= simple_form_for @exchange_rate, defaults: {
+<%= render 'snippets/flash_messages' %>
+<%= simple_form_for @box_type, defaults: {
       wrapper_html: { class: 'form-group' },
       input_html: { class: 'form-control' }
     } do |f| %>

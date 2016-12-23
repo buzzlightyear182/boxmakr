@@ -4,5 +4,6 @@ $(document).ready(function(){
   $('.country-filter').select2();
 
   $('.datepicker-input').datepicker({
-    format: 'dd M yyyy'  });
+    format: 'dd M yyyy'
+  });
 });

@@ -1,0 +1,13 @@
+<div class="row m-t-md">
+  <div class="col-sm-6">
+    <%= f.input :name %>
+    <%= f.input :base_price, label: "Base Price (₱)" %>
+    <%= f.input :threshold, label: "Cost Threshold (₱)"  %>
+    <%= f.input :max_item_count %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <%= f.button :submit, 'Save', class: 'btn btn-primary m-t-md' %>
+  </div>
+</div>
