@@ -1,3 +1,25 @@
-<li>
-<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-</li>
+<nav class="sidebar-nav">
+  <div class="sidebar-header">
+    <button class="nav-toggler nav-toggler-sm sidebar-toggler"
+      type="button" data-toggle="collapse"
+      data-target="#nav-toggleable-sm">
+      <span class="sr-only">Toggle nav</span>
+    </button>
+    <div class="logo">
+      <span class="sr-only">Raw Bites</span>
+      <%= image_tag 'logo.png', alt: 'Raw Bites', title: 'Raw Bites' %>
+    </div>
+  </div>
+  <div class="collapse nav-toggleable-sm" id="nav-toggleable-sm">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="nav-header">Administrator</li>
+       <li>
+        <%= link_to("Categories", categories_path) %>
+      </li>
+      <li>
+        <%= link_to( "Log out" , destroy_user_session_path, :method => :delete) %>
+      </li>
+    </ul>
+    <hr class="visible-xs m-t">
+  </div>
+</nav>

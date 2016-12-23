@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Boxmakr</title>
+    <title>Raw Bites Boxmakr</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,11 +9,17 @@
   </head>
 
   <body>
-  <div class="container-fluid">
+  <div class="container-fluid m-t-md">
     <% if user_signed_in? %>
-      <%= render 'snippets/sidebar' %>
-    <% end %>
-    <%= yield %>
+      <div class="col-sm-3 sidebar">
+        <%= render 'snippets/sidebar' %>
+      </div>
+      <div class="col-sm-9 content">
+    <% else %>
+        <div class="col-sm-12 content">
+      <% end %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

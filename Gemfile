@@ -45,7 +45,7 @@ gem 'devise'
 gem 'modernizr-rails'
 gem 'autoprefixer-rails'
 gem 'magnific-popup-rails'
-gem 'haml-rails'
+gem 'simple_form'
 
 gem 'country_select'
 
