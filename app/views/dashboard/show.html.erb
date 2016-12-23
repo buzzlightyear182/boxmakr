@@ -1,1 +1,9 @@
-Welcome <%= current_user.first_name %>
+<%= render 'snippets/flash_messages' %>
+
+<div class="dashhead m-t">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Administrator</h6>
+    <h2 class="dashhead-title">
+      Welcome <%= current_user.first_name %></h2>
+  </div>
+</div>

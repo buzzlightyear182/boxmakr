@@ -4,8 +4,9 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <%= devise_error_messages! %>
-  <% unless devise_error_messages! %>
+  <%= render 'snippets/flash_messages' %>
+
+  <% unless devise_error_messages!.empty? %>
      <div class="alert alert-danger alert-dismissible fade in" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

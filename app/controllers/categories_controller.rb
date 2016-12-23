@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
         flash[:notice] = "Category has been created"
         redirect_to categories_path
     else
-        flash[:error] = "Error"
+        flash[:error] = @category.errors.full_messages.first
         render 'new'
     end
   end
@@ -29,10 +29,10 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-        flash[:notice] = "Category has been created"
+        flash[:notice] = "Category has been updated"
         redirect_to categories_path
     else
-        flash[:error] = "Error"
+        flash[:error] = @category.errors.full_messages.first
         render 'new'
     end
   end

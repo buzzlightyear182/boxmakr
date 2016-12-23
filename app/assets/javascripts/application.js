@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require magnific-popup
+//= require select2
 //= require_directory ./bootstrap4
 //= require_tree .

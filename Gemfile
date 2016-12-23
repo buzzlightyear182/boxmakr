@@ -47,7 +47,11 @@ gem 'autoprefixer-rails'
 gem 'magnific-popup-rails'
 gem 'simple_form'
 
+gem "select2-rails"
 gem 'country_select'
+
+gem 'ransack'
+gem 'will_paginate', github: 'jonatack/will_paginate'
 
 group :development, :test do
 

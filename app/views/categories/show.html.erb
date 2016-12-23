@@ -7,13 +7,20 @@
       </div>
     </div>
   </div>
+  <div class="col-sm-6 text-xs-right">
+    <div class="btn-group">
+      <%= link_to( icon('edit'),
+          edit_category_path(@category),
+          class: 'btn btn-primary-outline' ) %>
+    </div>
+  </div>
 </div>
 <div class="row m-t-md">
   <div class="col-sm-3">
     <div class="statcard statcard-border p-a">
       <span class="statcard-desc">Tariff Rate</span>
       <h3 class="statcard-number">
-        <%= @category.tariff_rate %>
+        <%= number_to_percentage @category.tariff_rate*100, precision: 0 %>
       </h3>
     </div>
   </div>

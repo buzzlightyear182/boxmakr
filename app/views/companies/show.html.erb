@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h6 class="dashhead-subtitle">Company</h6>
+        <h2 class="dashhead-title"><%= @company.name %> </h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 text-xs-right">
+    <div class="btn-group">
+      <%= link_to( icon('edit'),
+          edit_company_path(@company),
+          class: 'btn btn-primary-outline', 'data-turbolinks' => false ) %>
+    </div>
+  </div>
+</div>
+<div class="row m-t-md">
+  <div class="col-sm-9">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Address</span>
+      <h3 class="statcard-number">
+        <%= @company.address %>
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Country</span>
+      <h3 class="statcard-number">
+        <%= @company.country_name %>
+      </h3>
+    </div>
+  </div>
+</div>
+<div class='row m-t-md'>
+  <div class="col-sm-5">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Email</span>
+      <h3 class="statcard-number">
+        <%= mail_to @company.email %>
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Contact person</span>
+      <h3 class="statcard-number">
+        <%= @company.contact_person %>
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Skype ID</span>
+      <h3 class="statcard-number">
+        <%= @company.skype_id %>
+      </h3>
+    </div>
+  </div>
+</div>

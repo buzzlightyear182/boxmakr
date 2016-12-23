@@ -1,0 +1,15 @@
+<div class="row m-t-md">
+  <div class="col-sm-6">
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :country, prompt: "Please select one", input_html: { :class => 'custom-select countries' } %>
+    <%= f.input :email %>
+    <%= f.input :contact_person %>
+    <%= f.input :skype_id %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <%= f.button :submit, 'Save', class: 'btn btn-primary m-t-md' %>
+  </div>
+</div>

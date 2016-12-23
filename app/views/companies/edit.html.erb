@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h6 class="dashhead-subtitle">Company</h6>
+        <h2 class="dashhead-title"><%= @company.try(:name) %></h2>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'snippets/flash_messages' %>
+<%= simple_form_for @company, defaults: {
+      wrapper_html: { class: 'form-group' },
+      input_html: { class: 'form-control' }
+    } do |f| %>
+  <%= render 'form', f: f %>
+<% end %>

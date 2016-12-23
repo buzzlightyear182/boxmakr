@@ -1,0 +1,41 @@
+<div class="dashhead m-t">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle"></h6>
+    <h2 class="dashhead-title">Brands</h2>
+  </div>
+  <div class="text-xs-right">
+    <div class="btn-group btn-group-header">
+      <%= link_to new_brand_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
+        <%= icon('plus') %> New Brand
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="flextable table-actions m-t">
+  <div class="flextable-item flextable-primary">
+    <%= search_form_for @q do |f| %>
+      <%= f.search_field :name_cont, :class => 'form-control', placeholder: "Search brand names" %>
+  </div>
+  <div class="flextable-item">
+    <%= f.button icon('search'), :class => 'btn btn-primary m-l' %>
+    <% end %>
+  </div>
+</div>
+<div class='row m-t'>
+  <div class='col-sm-6'>
+    <ul class="list-group">
+      <li class='list-group-header'>List of brands</li>
+      <% @brands.each do |brand| %>
+      <li class="list-group-item">
+        <%= link_to brand.name, brand_path(brand.id) %>
+        <span style="float:right">
+          <%= link_to edit_brand_path(brand.id) do %>
+            <%= icon('edit') %>
+          <% end %>
+        </span>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  </div>
+</div>

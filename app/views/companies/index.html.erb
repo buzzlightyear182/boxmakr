@@ -1,0 +1,47 @@
+<div class="dashhead m-t">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle"></h6>
+    <h2 class="dashhead-title">Companies</h2>
+  </div>
+  <div class="text-xs-right">
+    <div class="btn-group btn-group-header">
+      <%= link_to new_company_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
+        <%= icon('plus') %> New Company
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="flextable table-actions m-t">
+  <div class="flextable-item flextable-primary">
+    <%= search_form_for @q do |f| %>
+      <%= f.search_field :name_cont, :class => 'form-control', placeholder: "Search company names" %>
+  </div>
+  <div class="flextable-item">
+    <%= f.button icon('search'), :class => 'btn btn-primary m-l' %>
+    <% end %>
+  </div>
+</div>
+<div class='row m-t'>
+  <div class="col-sm-12 table-responsive">
+    <table class="table company-table" data-sort="table">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :name) %></th>
+          <th><%= sort_link(@q, :country) %></th>
+          <th>Email</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= link_to company.name, company_path(company.id) %></td>
+        <td><%= company.country_name %></td>
+        <td><%= mail_to company.email %></td>
+        <td><%= link_to icon('edit'), edit_company_path(company.id),'data-turbolinks' => false %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

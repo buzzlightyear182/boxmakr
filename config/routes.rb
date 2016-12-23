@@ -6,4 +6,7 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: :show
   resources :categories
+  resources :companies
+  resources :brands
+
 end

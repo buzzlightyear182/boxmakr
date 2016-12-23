@@ -1,0 +1,11 @@
+<div class="row m-t-md">
+  <div class="col-sm-6">
+    <%= f.input :name %>
+    <%= f.association :company, input_html: { :class => 'custom-select companies' }  %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <%= f.button :submit, 'Save', class: 'btn btn-primary m-t-md' %>
+  </div>
+</div>
