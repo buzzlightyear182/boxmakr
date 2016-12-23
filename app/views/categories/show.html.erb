@@ -12,6 +12,9 @@
       <%= link_to( icon('edit'),
           edit_category_path(@category),
           class: 'btn btn-primary-outline' ) %>
+      <%= link_to( icon('trash'),
+          category_path(@category), method: 'DELETE', data: {confirm: "Are you sure?"},
+          class: 'btn btn-primary-outline' ) %>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 class Brand < ApplicationRecord
 
-  validates :name, presence: true
+  validates :name, :country, presence: true
   belongs_to :company
 
   def country_name

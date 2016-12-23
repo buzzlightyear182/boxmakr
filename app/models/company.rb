@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
 
-  validates :name, presence: true
+  validates :name, :country, presence: true
   has_many :brands
 
   def country_name
