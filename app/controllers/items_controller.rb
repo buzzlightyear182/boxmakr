@@ -7,6 +7,15 @@ class ItemsController < ApplicationController
     @items = @q.result(distinct: true)
   end
 
+  def download
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @items.to_csv }
+    end
+  end
+
   def new
     @item = Item.new
   end

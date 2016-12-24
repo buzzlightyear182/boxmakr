@@ -39,4 +39,16 @@ class Item < ApplicationRecord
     return @errors
   end
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      headings = ["id","description","brand_id","category_id","shelf_life","top_SKU","unit_size","case_size","case_price_centavos","case_price_currency","case_weight","case_pallet","case_dimension_length","case_dimension_width","case_dimension_height"]
+      csv << headings
+      all.each do |item|
+        item_array = item.attributes.values_at(*headings)
+        item_array[8] = item.case_price_centavos/(100.to_f) # Change case_price to non-Money format
+        csv << item_array
+      end
+    end
+  end
+
 end

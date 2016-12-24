@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       collection do
         get 'upload'
         post 'import'
+        get 'download'
       end
     end
 
