@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h6 class="dashhead-subtitle">Item</h6>
+        <h2 class="dashhead-title"><%= @item.description %>
+        <% if @item.top_SKU %>
+          <small><%= icon('thumbs-up') %></small>
+        <% end %>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 text-xs-right">
+    <div class="btn-group">
+      <%= link_to( icon('edit'),
+          edit_item_path(@item),
+          class: 'btn btn-primary-outline', 'data-turbolinks' => false ) %>
+      <%= link_to( icon('trash'),
+          item_path(@item), method: 'DELETE', data: {confirm: "Are you sure you want to delete #{@item.description}?"},
+          class: 'btn btn-primary-outline' ) %>
+
+    </div>
+  </div>
+</div>
+<div class="row m-t-md">
+  <div class="col-sm-6">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Brand</span>
+      <h3 class="statcard-number">
+        <%= link_to @item.brand.name, brand_path(@item.brand_id) %>
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Category</span>
+      <h3 class="statcard-number">
+        <%= link_to @item.category.name, category_path(@item.category_id) %>
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Shelf Life</span>
+      <h3 class="statcard-number">
+        <%= @item.shelf_life %> months
+      </h3>
+    </div>
+  </div>
+</div>
+<div class="row m-t">
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Case Price</span>
+      <h3 class="statcard-number">
+        <%= @item.case_price %> <%=  @item.case_price_currency %>
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Case size</span>
+      <h3 class="statcard-number">
+        <%= @item.case_size ? @item.case_size : "-" %> units
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Unit Price</span>
+      <h3 class="statcard-number">
+        <%= @item.unit_price ? @item.unit_price : "-" %> <%=  @item.case_price_currency %>
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Unit Size</span>
+      <h3 class="statcard-number">
+        <%= @item.unit_size ? @item.unit_size : "-" %>
+      </h3>
+    </div>
+  </div>
+</div>
+<div class="row m-t">
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Case Weight</span>
+      <h3 class="statcard-number">
+        <%= @item.case_weight ? @item.case_weight : "-" %> kg
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Pallet size</span>
+      <h3 class="statcard-number">
+        <%= @item.case_pallet ? @item.case_pallet : "-" %>  cases
+      </h3>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-border p-a">
+      <span class="statcard-desc">Case CBM</span>
+      <h3 class="statcard-number">
+        <%= @item.case_cbm ? @item.case_cbm : "-" %>
+      </h3>
+    </div>
+  </div>
+</div>

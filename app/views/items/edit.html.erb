@@ -2,12 +2,13 @@
   <div class="col-sm-6">
     <div class="dashhead">
       <div class="dashhead-titles">
-        <h2 class="dashhead-title">New brand</h2>
+        <h6 class="dashhead-subtitle">Item</h6>
+        <h2 class="dashhead-title"><%= @item.try(:description) %></h2>
       </div>
     </div>
   </div>
 </div>
-<%= simple_form_for @brand, defaults: {
+<%= simple_form_for @item, defaults: {
       wrapper_html: { class: 'form-group' },
       input_html: { class: 'form-control' }
     } do |f| %>

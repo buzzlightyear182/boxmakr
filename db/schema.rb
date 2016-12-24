@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223172013) do
+ActiveRecord::Schema.define(version: 20161224075509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,12 +57,20 @@ ActiveRecord::Schema.define(version: 20161223172013) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string  "name",       null: false
     t.boolean "top_SKU"
     t.integer "shelf_life"
-    t.integer "weight"
     t.integer "case_size"
-    t.index ["name"], name: "index_items_on_name", using: :btree
+    t.string  "description"
+    t.integer "category_id"
+    t.float   "case_weight"
+    t.integer "brand_id"
+    t.integer "case_price_centavos",   default: 0, null: false
+    t.string  "case_price_currency"
+    t.integer "case_pallet"
+    t.string  "unit_size"
+    t.float   "case_dimension_length"
+    t.float   "case_dimension_width"
+    t.float   "case_dimension_height"
   end
 
   create_table "users", force: :cascade do |t|

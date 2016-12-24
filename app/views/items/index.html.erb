@@ -1,0 +1,67 @@
+<div class="dashhead m-t">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle"></h6>
+    <h2 class="dashhead-title">Items</h2>
+  </div>
+  <div class="text-xs-right">
+    <div class='btn-group btn-group-header'>
+      <button type="button" class="btn btn-primary-outline"
+        data-toggle="collapse" href="#filters-group"
+        aria-expanded="false" aria-controls="filters-group" >
+          <%= icon('filter') %>
+      </button>
+      <%= link_to new_item_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
+        <%= icon('plus') %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render 'snippets/flash_messages' %>
+<div id="filters-group" class="collapse in">
+  <ul class="list-group m-t m-b-0">
+    <li class="list-group-header">
+      Filters
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <%= search_form_for @q do |f| %>
+        <div class="col-sm-7">
+          <%= f.search_field :description_cont, :class => 'form-control', placeholder: "Search item descriptions" %>
+        </div>
+        <div class='col-sm-4'>
+          <%= f.select :brand_id_eq, Brand.all.collect { |b| [ b.name, b.id]}, {include_blank: true, prompt: 'Filter by brand'}, { :class => 'brand-filter custom-select'} %>
+        </div>
+        <div class='col-sm-1'>
+          <%= f.button icon('search'), :class => 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class='row m-t'>
+  <div class="col-sm-12 table-responsive">
+    <table class="table company-table" data-sort="table">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :id, "ID") %></th>
+          <th><%= sort_link(@q, :brand) %></th>
+          <th><%= sort_link(@q, :description) %></th>
+          <th>Unit size</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= link_to item.id, item_path(item.id) %></td>
+        <td><%= item.brand.name %></td>
+        <td><%= link_to item.description, item_path(item.id) %></td>
+        <td><%= item.unit_size %></td>
+        <td><%= link_to icon('edit'), edit_item_path(item.id),'data-turbolinks' => false %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

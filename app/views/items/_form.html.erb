@@ -1,0 +1,67 @@
+<div class="row m-t-md">
+  <div class="col-sm-6">
+    <%= f.input :description, label: 'Item description' %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-sm-3'>
+    <%= f.association :brand, required: true, input_html: { :class => 'custom-select brands' }  %>
+  </div>
+  <div class='col-sm-3'>
+    <%= f.association :category, required: true, input_html: { :class => 'custom-select' }  %>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-sm-3">
+    <%= f.input :shelf_life, label: 'Shelf life (months)' %>
+  </div>
+  <div class='col-sm-3'>
+    <div class="checkbox custom-control custom-checkbox m-t-md">
+      <label>
+        <%= f.input_field :top_SKU, as: :boolean, label: false, inline_label: false %>
+        <span class="custom-control-indicator"></span>
+          Top SKU?
+      </label>
+    </div>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-sm-3">
+    <%= f.input :case_price %>
+  </div>
+  <div class="col-sm-3">
+    <%= f.input :case_price_currency, collection: ['GBP', 'EUR', 'USD', 'HKD', 'PHP'], :input_html => { :class => 'custom-select currencies'} %>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-sm-3">
+    <%= f.input :unit_size, label: 'Unit size' %>
+  </div>
+   <div class="col-sm-3">
+    <%= f.input :case_weight, label: 'Case weight (kg)' %>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-sm-3">
+    <%= f.input :case_size, label: 'Case size (units)' %>
+  </div>
+  <div class="col-sm-3">
+    <%= f.input :case_pallet, label: 'Pallet size (cases)' %>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-sm-2">
+    <%= f.input :case_dimension_length, label: 'L (m)' %>
+  </div>
+  <div class="col-sm-2">
+    <%= f.input :case_dimension_width, label: 'W (m)' %>
+  </div>
+  <div class="col-sm-2">
+    <%= f.input :case_dimension_height, label: 'H (m)' %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <%= f.button :submit, 'Save', class: 'btn btn-primary m-t-md' %>
+  </div>
+</div>
