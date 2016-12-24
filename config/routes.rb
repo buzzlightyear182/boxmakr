@@ -7,16 +7,21 @@ Rails.application.routes.draw do
   resources :dashboard, only: :show
   resources :categories
   resources :companies
-  resources :brands
   resources :exchange_rates, except: :show
   resources :box_types
 
-    resources :items do
-      collection do
-        get 'upload'
-        post 'import'
-        get 'download'
-      end
+  resources :brands do
+    collection do
+      get 'download'
     end
+  end
+
+  resources :items do
+    collection do
+      get 'upload'
+      post 'import'
+      get 'download'
+    end
+  end
 
 end

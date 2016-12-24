@@ -13,6 +13,9 @@
       <%= link_to new_brand_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
         <%= icon('plus') %>
       <% end %>
+      <%= link_to download_brands_path, :class => 'btn btn-primary-outline' do %>
+        <%= icon('download') %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -24,16 +27,19 @@
     </li>
     <li class="list-group-item">
       <div class="row">
-        <%= search_form_for @q do |f| %>
-        <div class="col-sm-7">
+        <%= search_form_for @q, url: brands_path do |f| %>
+        <div class="col-sm-6">
           <%= f.search_field :name_cont, :class => 'form-control', placeholder: "Search brand names" %>
         </div>
         <div class='col-sm-4'>
           <%= f.select :country_eq, Brand.all.collect { |c| [ c.country_name, c.country]}, {include_blank: true, prompt: 'Filter by country'}, { :class => 'country-filter custom-select'} %>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-md-2 col-sm-12'>
+          <div class='btn-group f-r'>
           <%= f.button icon('search'), :class => 'btn btn-primary' %>
+          <%= link_to icon('repeat'), items_path, :class => 'btn btn-primary' %>
           <% end %>
+          </div>
         </div>
       </div>
     </li>

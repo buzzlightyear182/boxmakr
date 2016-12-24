@@ -1,10 +1,19 @@
 class BrandsController < ApplicationController
 
-  before_action :find_brand, except: [:index, :new, :create]
+  before_action :find_brand, only: [:show, :edit, :update, :destroy]
 
   def index
     @q = Brand.ransack(params[:q])
     @brands = @q.result(distinct: true)
+  end
+
+  def download
+    @q = Brand.ransack(params[:q])
+    @brands = @q.result(distinct: true)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @brands.to_csv }
+    end
   end
 
   def show

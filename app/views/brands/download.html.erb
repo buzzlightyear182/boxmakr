@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h2 class="dashhead-title">Download Brands</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'snippets/flash_messages' %>
+<div class='row m-t'>
+  <div class="col-md-6 col-sm-12">
+  <p>Leave blank to download entire brand list</p>
+  <%= search_form_for(@q, url: download_brands_path(@q, format: :csv)) do |f| %>
+    <%= f.search_field :name_cont, :class => 'form-control m-b', placeholder: "Filter by brand names" %>
+    <%= f.select :country_eq, Brand.all.collect { |c| [ c.country_name, c.country]}, {include_blank: true, prompt: 'Filter by country'}, { :class => 'country-filter custom-select'} %>
+    <%= f.submit 'Download CSV', :class => 'btn btn-primary m-t' %>
+    <%= link_to icon('repeat'), '', :class => 'btn btn-primary m-t m-l', :onclick => 'this.form.reset()' %>
+    <% end %>
+  </div>
+</div>
