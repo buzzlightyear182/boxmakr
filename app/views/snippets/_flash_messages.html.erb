@@ -1,9 +1,13 @@
-<% if alert %>
+<% if flash[:error] || alert %>
   <div class="alert alert-danger" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <p><%= alert %></p>
+    <% if alert %>
+      <p><%= alert %></p>
+    <% elsif flash[:error] %>
+      <p><%= flash[:error] %></p>
+    <% end %>
   </div>
 <% elsif notice %>
   <div class="alert alert-success" role="alert">

@@ -70,7 +70,7 @@
     <div class="statcard statcard-border p-a">
       <span class="statcard-desc">Unit Price</span>
       <h3 class="statcard-number">
-        <%= @item.unit_price ? @item.unit_price : "-" %> <%=  @item.case_price_currency %>
+        <%= @item.unit_price ? @item.unit_price.round(3) : "-" %> <%=  @item.case_price_currency %>
       </h3>
     </div>
   </div>

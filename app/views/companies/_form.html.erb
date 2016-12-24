@@ -1,5 +1,5 @@
 <div class="row m-t-md">
-  <div class="col-sm-6">
+  <div class="col-md-6 col-sm-12">
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :country, prompt: "Please select one", required: true, input_html: { :class => 'custom-select countries' } %>
@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-md-6 col-sm-12">
   <%= f.button :submit, 'Save', class: 'btn btn-primary m-t-md' %>
   </div>
 </div>

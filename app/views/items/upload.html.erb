@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h2 class="dashhead-title">Upload Items</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'snippets/flash_messages' %>
+<div class='row m-t'>
+  <div class='col-md-6 col-sm-12'>
+    <%= form_tag import_items_path, multipart: true do %>
+      <p>Acceptable files: .xlsx or .csv</p>
+      <label class="custom-file">
+        <%= file_field_tag :file, :class => 'custom-file-input' %>
+        <span class="custom-file-control"></span>
+      </label>
+      <%= submit_tag "Import", :class => 'btn btn-primary m-t' %>
+    <% end %>
+  </div>
+  <div class='col-md-6 col-sm-12 m-t'>
+    <h5><em>Some notes:</em></h5>
+    <p>When updating: don't leave any of the cells blank (else it will erase the existing data)</p>
+    <p><strong>description</strong> cannot have duplicates in the system</p>
+    <p><strong>brand_id</strong> and <strong>category_id</strong> cannot be blank</p>
+  </div>
+</div>
+<div class='row m-t'>
+  <div class='col-md-6 col-sm-12'>
+      <ul class="list-group">
+      <li class="list-group-header">Format<span class='f-r'>Unit</span></li>
+      <li class="list-group-item">id<span class='f-r'>integer (blank if new)</span></li>
+      <li class="list-group-item">description<span class='f-r'>string</span></li>
+      <li class="list-group-item">brand_id<span class='f-r'>integer</span></li>
+      <li class="list-group-item">category_id<span class='f-r'>integer</span></li>
+      <li class="list-group-item">shelf_life (months)<span class='f-r'>integer</span></li>
+      <li class="list-group-item">top_SKU<span class='f-r'>true or false only</span></li>
+      <li class="list-group-item">unit_size<span class='f-r'>ex. 50g, 250ml</span></li>
+      <li class="list-group-item">case_size (units)<span class='f-r'>integer</span></li>
+      <li class="list-group-item">case_price<span class='f-r'>2 decimal places</span></li>
+      <li class="list-group-item">case_price_currency<span class='f-r'> ex. GBP, PHP, USD</span></li>
+      <li class="list-group-item">case_weight<span class='f-r'>2 decimal places</span></li>
+      <li class="list-group-item">case_pallet (cases)<span class='f-r'>integer</span></li>
+      <li class="list-group-item">case_dimension_length (m)<span class='f-r'>3 decimal places</span></li>
+      <li class="list-group-item">case_dimension_width (m)<span class='f-r'>3 decimal places</span></li>
+      <li class="list-group-item">case_dimension_height (m)<span class='f-r'>3 decimal places</span></li>
+
+    </ul>
+  </div>
+</div>

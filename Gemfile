@@ -55,6 +55,8 @@ gem 'will_paginate', github: 'jonatack/will_paginate'
 
 gem 'money-rails'
 
+gem 'roo', '~> 2.5.0'
+
 group :development, :test do
 
   gem "letter_opener"

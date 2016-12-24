@@ -12,7 +12,10 @@
       </button>
       <%= link_to new_item_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
         <%= icon('plus') %>
-      <% end %>
+        <% end %>
+        <%= link_to upload_items_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
+        <%= icon('upload') %>
+        <% end %>
     </div>
   </div>
 </div>

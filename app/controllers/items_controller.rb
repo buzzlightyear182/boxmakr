@@ -1,11 +1,10 @@
 class ItemsController < ApplicationController
 
-  before_action :find_item, except: [:index, :new, :create]
+  before_action :find_item, only: [:edit, :show, :destroy, :update]
 
   def index
     @q = Item.ransack(params[:q])
     @items = @q.result(distinct: true)
-
   end
 
   def new
@@ -40,6 +39,22 @@ class ItemsController < ApplicationController
     @item.destroy
     flash[:notice] = "Successfully deleted"
     redirect_to items_path
+  end
+
+  def upload
+  end
+
+  def import
+    @item = nil
+    @errors = Item.upload(params[:file])
+    if @errors.empty?
+      redirect_to items_path, notice: 'New items uploaded.'
+    else
+      @errors.each do |error|
+        flash[:error] = error
+      end
+      render 'upload'
+    end
   end
 
   private

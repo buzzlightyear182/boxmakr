@@ -44,6 +44,7 @@
     <table class="table company-table" data-sort="table">
       <thead>
         <tr>
+          <th><%= sort_link(@q, :id, "ID") %></th>
           <th><%= sort_link(@q, :name) %></th>
           <th><%= sort_link(@q, :country) %></th>
           <th>Edit</th>
@@ -52,6 +53,7 @@
       <tbody>
     <% @brands.each do |brand| %>
       <tr>
+        <td><%= brand.id %></td>
         <td><%= link_to brand.name, brand_path(brand.id) %></td>
         <td><%= brand.country_name %></td>
         <td><%= link_to icon('edit'), edit_brand_path(brand.id),'data-turbolinks' => false %></td>
