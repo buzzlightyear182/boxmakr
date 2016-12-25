@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224075509) do
+ActiveRecord::Schema.define(version: 20161224185020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 20161224075509) do
     t.string  "threshold_currency",  default: "PHP", null: false
     t.integer "max_item_count"
     t.index ["name"], name: "index_box_types_on_name", using: :btree
+  end
+
+  create_table "boxes", force: :cascade do |t|
+    t.integer "forecast"
+    t.integer "actual"
+    t.integer "box_type_id"
+    t.date    "month_date"
+  end
+
+  create_table "boxes_items", id: false, force: :cascade do |t|
+    t.integer "box_id_id"
+    t.integer "item_id_id"
+    t.index ["box_id_id"], name: "index_boxes_items_on_box_id_id", using: :btree
+    t.index ["item_id_id"], name: "index_boxes_items_on_item_id_id", using: :btree
   end
 
   create_table "brands", force: :cascade do |t|

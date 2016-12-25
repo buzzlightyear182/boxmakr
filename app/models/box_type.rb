@@ -3,6 +3,7 @@ class BoxType < ApplicationRecord
   validates :name, presence: true
   monetize :base_price_centavos
   monetize :threshold_centavos
+  has_many :boxes
 
   def quarter_price
     (base_price_centavos/100 * 0.92).round

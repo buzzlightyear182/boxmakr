@@ -1,0 +1,79 @@
+<div class="dashhead m-t">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle"></h6>
+    <h2 class="dashhead-title">Boxes</h2>
+  </div>
+  <div class="text-xs-right">
+    <div class='btn-group btn-group-header'>
+      <button type="button" class="btn btn-primary-outline"
+        data-toggle="collapse" href="#filters-group"
+        aria-expanded="false" aria-controls="filters-group" >
+          <%= icon('filter') %>
+      </button>
+      <%= link_to new_box_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
+        <%= icon('plus') %>
+      <% end %>
+      <%= link_to upload_boxes_path, :class => 'btn btn-primary-outline', 'data-turbolinks' => false do %>
+        <%= icon('upload') %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render 'snippets/flash_messages' %>
+<div id="filters-group" class="collapse in">
+  <ul class="list-group m-t m-b-0">
+    <li class="list-group-header">
+      Filters
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <%= search_form_for @q, url: boxes_path do |f| %>
+        <div class='col-md-5 col-sm-12'>
+          <%= f.select :box_type_id_eq, BoxType.all.collect { |b| [ b.name, b.id]}, {include_blank: true, prompt: 'Filter by box type'}, { :class => 'custom-select'} %>
+        </div>
+        <div class='col-md-5 col-sm-12'>
+          <%= f.select :month_date_eq, Box.all.pluck(:month_date).uniq!.collect { |month| [ month.strftime('%b %Y'), month]}, {include_blank: true, prompt: 'Filter by month'}, { :class => ' custom-select'} %>
+        </div>
+        <div class='col-md-2 col-sm-12'>
+          <div class='btn-group f-r'>
+          <%= f.button icon('search'), :class => 'btn btn-primary' %>
+          <%= link_to icon('repeat'), boxes_path, :class => 'btn btn-primary' %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div><div class='row m-t'>
+  <div class="col-md-6 table-responsive">
+    <table class="table" data-sort="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Date</th>
+          <th>Box Type</th>
+          <th>Forecast</th>
+          <th>Actual</th>
+          <th>View</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @boxes.each do |box| %>
+          <tr>
+            <td><%= check?(box.month_date) %></td>
+            <td><%= box.month_date.strftime('%b %Y') %></td>
+            <td><%= badge_label(box.box_type.name) %></td>
+            <td><%= box.forecast %></td>
+            <td><%= box.actual.nil? ? box.actual : '-' %></td>
+            <td class='text-center'><%= link_to icon('search'), box_path(box.id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+    <div class='text-center'>
+      <%= custom_will_paginate @boxes %>
+    </div>
+  </div>
+</div>

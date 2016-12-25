@@ -1,0 +1,32 @@
+<div class="row m-t-md">
+  <div class="col-md-3 col-sm-6">
+    <%= f.input :forecast %>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <%= f.input :actual %>
+  </div>
+</div>
+<div class="row m-t">
+  <div class='col-md-3 col-sm-6'>
+    <%= f.association :box_type, input_html: { :class => 'custom-select companies' } %>
+  </div>
+  <div class='col-md-3 col-sm-6'>
+    <label>Period</label>
+    <div class="input-group">
+      <span class="input-group-addon">
+        <span class="icon icon-calendar"></span>
+      </span>
+      <%= f.input :month_date, as: :string, label: false,
+                        input_html: {
+                        id: 'exchange_rate_date',
+                        class: "form-control datepicker-month-only",
+                        'data-provide': "datepicker",
+                        style: "width: 200px;" } %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+  <%= f.button :submit, 'Save', class: 'btn btn-primary m-t-md' %>
+  </div>
+</div>

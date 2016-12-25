@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :companies
   resources :exchange_rates, except: :show
   resources :box_types
+  resources :boxes do
+    collection do
+      get 'upload'
+      post 'import'
+    end
+  end
 
   resources :brands do
     collection do

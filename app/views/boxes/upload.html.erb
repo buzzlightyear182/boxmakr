@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h2 class="dashhead-title">Upload Boxes</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'snippets/flash_messages' %>
+<div class='row m-t'>
+  <div class='col-md-6 col-sm-12'>
+    <%= form_tag import_boxes_path, multipart: true do %>
+      <p>Acceptable files: .xlsx or .csv</p>
+      <label class="custom-file">
+        <%= file_field_tag :file, :class => 'custom-file-input' %>
+        <span class="custom-file-control"></span>
+      </label>
+      <%= submit_tag "Import", :class => 'btn btn-primary m-t' %>
+    <% end %>
+  </div>
+  <div class='col-md-6 col-sm-12 m-t'>
+    <h5><em>Some notes:</em></h5>
+    <p>When updating: don't leave any of the cells blank (else it will erase the existing data)</p>
+    <p>Leave <strong>id</strong> blank if new</p>
+  </div>
+</div>
+<div class='row m-t-md'>
+  <div class='col-md-6 col-sm-12'>
+      <ul class="list-group">
+      <li class="list-group-header">Format<span class='f-r'>Unit</span></li>
+      <li class="list-group-item">box_type_id<span class='f-r'>integer</span></li>
+      <li class="list-group-item">month_date<span class='f-r'>dd MMM YYYY</span></li>
+      <li class="list-group-item">forecast<span class='f-r'>integer</span></li>
+      <li class="list-group-item">actual<span class='f-r'>integer</span></li>
+    </ul>
+  </div>
+</div>
