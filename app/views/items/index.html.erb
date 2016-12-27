@@ -30,7 +30,7 @@
     </li>
     <li class="list-group-item">
       <div class="row">
-        <%= search_form_for @q, url: items_path do |f| %>
+        <%= search_form_for @q, url: items_path, remote: true do |f| %>
         <div class="col-md-6 col-sm-12">
           <%= f.search_field :description_cont, :class => 'form-control', placeholder: "Search item descriptions" %>
         </div>
@@ -39,7 +39,7 @@
         </div>
         <div class='col-md-2 col-sm-12'>
           <div class='btn-group f-r'>
-          <%= f.button icon('search'), :class => 'btn btn-primary' %>
+          <%= f.submit :class => 'btn btn-primary' %>
           <%= link_to icon('repeat'), items_path, :class => 'btn btn-primary' %>
           <% end %>
           </div>
@@ -48,32 +48,7 @@
     </li>
   </ul>
 </div>
-<div class='row m-t'>
-  <div class="col-sm-12 table-responsive">
-    <table class="table company-table" data-sort="table">
-      <thead>
-        <tr>
-          <th><%= sort_link(@q, :id, "ID") %></th>
-          <th><%= sort_link(@q, :brand) %></th>
-          <th><%= sort_link(@q, :description) %></th>
-          <th>Unit size</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= link_to item.id, item_path(item.id) %></td>
-        <td><%= item.brand.name %></td>
-        <td><%= link_to item.description, item_path(item.id) %></td>
-        <td><%= item.unit_size %></td>
-        <td><%= link_to icon('edit'), edit_item_path(item.id),'data-turbolinks' => false %></td>
-      </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <div class='text-center'>
-      <%= custom_will_paginate @boxes %>
-    </div>
-  </div>
+<div class='row m-t' id='items'>
+  <%= render 'items' %>
 </div>
+
