@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 20161224185020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "box_items", id: false, force: :cascade do |t|
+    t.integer "box_id"
+    t.integer "item_id"
+    t.index ["box_id"], name: "index_box_items_on_box_id", using: :btree
+    t.index ["item_id"], name: "index_box_items_on_item_id", using: :btree
+  end
+
   create_table "box_types", force: :cascade do |t|
     t.string  "name",                                null: false
     t.integer "base_price_centavos", default: 0,     null: false
@@ -29,14 +36,8 @@ ActiveRecord::Schema.define(version: 20161224185020) do
     t.integer "forecast"
     t.integer "actual"
     t.integer "box_type_id"
-    t.date    "month_date"
-  end
-
-  create_table "boxes_items", id: false, force: :cascade do |t|
-    t.integer "box_id_id"
-    t.integer "item_id_id"
-    t.index ["box_id_id"], name: "index_boxes_items_on_box_id_id", using: :btree
-    t.index ["item_id_id"], name: "index_boxes_items_on_item_id_id", using: :btree
+    t.integer "period_id"
+    t.index ["period_id"], name: "index_boxes_on_period_id", using: :btree
   end
 
   create_table "brands", force: :cascade do |t|
@@ -85,6 +86,11 @@ ActiveRecord::Schema.define(version: 20161224185020) do
     t.float   "case_dimension_length"
     t.float   "case_dimension_width"
     t.float   "case_dimension_height"
+  end
+
+  create_table "periods", force: :cascade do |t|
+    t.date   "month_date"
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

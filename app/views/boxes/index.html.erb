@@ -32,7 +32,7 @@
           <%= f.select :box_type_id_eq, BoxType.all.collect { |b| [ b.name, b.id]}, {include_blank: true, prompt: 'Filter by box type'}, { :class => 'custom-select'} %>
         </div>
         <div class='col-md-5 col-sm-12'>
-          <%= f.select :month_date_eq, Box.all.pluck(:month_date).uniq!.collect { |month| [ month.strftime('%b %Y'), month]}, {include_blank: true, prompt: 'Filter by month'}, { :class => ' custom-select'} %>
+          <%= f.select :period_id_eq, Period.all.collect { |period| [ period.month_date.strftime('%b %Y'), period.id]}, {include_blank: true, prompt: 'Filter by month'}, { :class => ' custom-select'} %>
         </div>
         <div class='col-md-2 col-sm-12'>
           <div class='btn-group f-r'>
@@ -49,7 +49,6 @@
     <table class="table" data-sort="table">
       <thead>
         <tr>
-          <th></th>
           <th>Date</th>
           <th>Box Type</th>
           <th>Forecast</th>
@@ -60,8 +59,7 @@
       <tbody>
         <% @boxes.each do |box| %>
           <tr>
-            <td><%= check?(box.month_date) %></td>
-            <td><%= box.month_date.strftime('%b %Y') %></td>
+            <td><%= box.period.month_date.strftime('%b %Y') %></td>
             <td><%= badge_label(box.box_type.name) %></td>
             <td><%= box.forecast %></td>
             <td><%= box.actual.nil? ? box.actual : '-' %></td>

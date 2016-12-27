@@ -33,3 +33,18 @@
 #   {name: 'Regular', base_price: '1495', threshold: '200', max_item_count: 10},
 #   {name: 'Premium', base_price: '2495', threshold: '350', max_item_count: 15}
 #   ])
+
+# Period.create([
+#   {name: 'Month 1', month_date: '01 Apr 2017'},
+#   {name: 'Month 2', month_date: '01 May 2017'},
+#   {name: 'Month 3', month_date: '01 Jun 2017'},
+#   {name: 'Month 4', month_date: '01 Jul 2017'},
+#   {name: 'Month 5', month_date: '01 Aug 2017'},
+#   {name: 'Month 6', month_date: '01 Sep 2017'},
+#   {name: 'Month 7', month_date: '01 Oct 2017'},
+#   {name: 'Month 8', month_date: '01 Nov 2017'},
+#   {name: 'Month 9', month_date: '01 Dec 2017'},
+#   {name: 'Month 10', month_date: '01 Jan 2018'},
+#   {name: 'Month 11', month_date: '01 Feb 2018'},
+#   {name: 'Month 12', month_date: '01 Mar 2018'}
+# ])

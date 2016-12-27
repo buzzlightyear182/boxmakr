@@ -1,23 +1,18 @@
 class Box < ApplicationRecord
 
+  belongs_to :period
   belongs_to :box_type
+
+  validates_presence_of :box_type_id
 
   # scope :find_lazy, -> (id) { where(:id => id) }
   scope :for_trial, -> { where(box_type_id: 1) }
   scope :for_regular, -> { where(box_type_id: 2) }
   scope :for_premium, -> { where(box_type_id: 3) }
-  scope :by_month, -> (month_date) { where(month_date: month_date) }
+  scope :by_month, -> (period_id) { where(period_id: period_id) }
 
   def name
-    self.month_date.strftime('%b %Y').to_s + " - " + self.box_type.name
-  end
-
-  def self.existing_months
-    pluck(:month_date).uniq!
-  end
-
-  def self.total_forecast
-    pluck(:forecast).inject(0){|sum,x| sum + x }
+    self.period.month_date.strftime('%b %Y').to_s + " - " + self.box_type.name
   end
 
   def self.upload(file)
@@ -27,8 +22,13 @@ class Box < ApplicationRecord
       header = spreadsheet.sheet(0).row(1)
       (2..spreadsheet.sheet(0).last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        box = find_by(id: row["id"]) || new
-        box.attributes = row.to_hash
+
+        period_id = Period.find_by_month_date(row['month_date']).id
+        row[:period_id] = period_id
+
+        box = where(period_id: period_id, box_type_id: row['box_type_id']).first || new
+
+        box.attributes = row.except('month_date').to_hash
         unless box.save
           box.errors.full_messages.each do |message|
             @errors << "Error on row #{i}: #{message}"

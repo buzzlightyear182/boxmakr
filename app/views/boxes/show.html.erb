@@ -11,10 +11,10 @@
   <div class="col-sm-6 text-xs-right">
     <div class="btn-group">
       <%= link_to( icon('edit'),
-          edit_box_path(@box),
+          edit_period_box_path(@box),
           class: 'btn btn-primary-outline', 'data-turbolinks' => false ) %>
       <%= link_to( icon('trash'),
-          box_path(@box), method: 'DELETE', data: {confirm: "Are you sure you want to delete #{@box.name}?"},
+          period_box_path(@box), method: 'DELETE', data: {confirm: "Are you sure you want to delete #{@box.name}?"},
           class: 'btn btn-primary-outline' ) %>
     </div>
   </div>

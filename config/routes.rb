@@ -9,10 +9,21 @@ Rails.application.routes.draw do
   resources :companies
   resources :exchange_rates, except: :show
   resources :box_types
-  resources :boxes do
+  resources :boxes, except: [:index, :show, :edit, :update, :destroy, :new, :create] do
     collection do
       get 'upload'
       post 'import'
+    end
+  end
+
+  resources :periods, only: [:show, :index] do
+    resources :boxes, except: [:index] do
+      collection do
+       get 'select_items', as: "select_items"
+      end
+      member do
+        post 'add_item', as: "add_items"
+      end
     end
   end
 

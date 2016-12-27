@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h2 class="dashhead-title"><%= @period.month_date.strftime('%b %Y') %>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 text-xs-right">
+    <div class="btn-group btn-group-header">
+      <%= link_to new_period_box_path(period_id: @period.id), :class=> 'btn btn-primary-outline' do %>
+        <%= icon('archive') %>  Add new box
+      <% end %>
+      <%= link_to select_items_period_boxes_path(period_id: @period.id), :class=> 'btn btn-primary-outline' do %>
+        <%= icon('plus-square') %>  Add items to boxes
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row m-t-md">
+  <div class='col-sm-4'>
+    <ul class="list-group">
+    <li class="list-group-header">
+      Forecast
+      <span class='f-r'><%= @period.total_forecast %></span>
+    </li>
+    <% @period.boxes.each do |box| %>
+    <li class="list-group-item">
+      <%= link_to period_box_path(period_id: @period.id, id: box.id) do %>
+        <%= badge_label(box.box_type.name) %>
+      <% end %>
+      <span class='f-r'><%= box.forecast %></span>
+    </li>
+    <% end %>
+  </ul>
+  </div>
+</div>
