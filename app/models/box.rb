@@ -42,11 +42,33 @@ class Box < ApplicationRecord
     return @errors
   end
 
+  def subscriber_difference
+    return if actual.nil?
+    forecast - actual
+  end
+
   def has_item?(item)
     items.include? item
   end
 
-  def add_item(item)
-    items << item
+  def above_threshold?(item)
+    price = item.unit_price_in_peso
+    price > box_type.threshold
+  end
+
+  def item_count_per_category(category_id)
+    items.where(category_id: category_id).count
+  end
+
+  def total_cost
+    costs = []
+    items.each do |item|
+      costs << item.unit_price_in_peso
+    end
+    costs.inject(0){|sum,x| sum + x }
+  end
+
+  def cost_difference
+    box_type.target_cost - total_cost
   end
 end

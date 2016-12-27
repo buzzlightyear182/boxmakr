@@ -19,3 +19,16 @@
     </div>
   </div>
 </div>
+<div class="row m-t-md">
+  <div class='col-sm-4'>
+    <ul class="list-group">
+    <li class="list-group-header">Items</li>
+    <% @box.items.each do |item| %>
+    <li class="list-group-item"><%= link_to item_path(item.id) do %>
+        <%= item.description %> (<%= item.unit_size %>)
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+  </div>
+</div>

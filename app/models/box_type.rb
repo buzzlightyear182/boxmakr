@@ -18,7 +18,7 @@ class BoxType < ApplicationRecord
   end
 
   def target_cost
-    (base_price_centavos/100 * 0.43).round
+    Money.new((base_price_centavos * 0.43))
   end
 
 end

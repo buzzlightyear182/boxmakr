@@ -18,37 +18,142 @@
     </div>
   </div>
 </div>
-<div class="row m-t-md">
-  <div class='col-sm-4'>
-    <ul class="list-group">
+<div class='row'>
+<div id="subscriber-count-group" class="collapse in">
+  <div class='col-sm-12 col-md-6'>
+    <ul class="list-group m-t m-b-0">
+      <li class="list-group-header">
+        Subscriber Count
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-12 table-responsive">
+            <table class="table" data-sort="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><%= badge_label('Trial') %></th>
+                  <th><%= badge_label('Regular') %></th>
+                  <th><%= badge_label('Premium') %></th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Forecast</td>
+                <% @period.boxes.each do |box| %>
+                  <td><%= box.forecast %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <td>Actual</td>
+                <% @period.boxes.each do |box| %>
+                  <td><%= box.try(:actual) %></td>
+                <% end %>
+              </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>Difference</td>
+                  <% @period.boxes.each do |box| %>
+                    <td><%= box.subscriber_difference %></td>
+                <% end %>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="subscriber-count-group" class="collapse in">
+  <div class='col-sm-12 col-md-6'>
+    <ul class="list-group m-t m-b-0">
+      <li class="list-group-header">
+        Box Price
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-12 table-responsive">
+            <table class="table" data-sort="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><%= badge_label('Trial') %></th>
+                  <th><%= badge_label('Regular') %></th>
+                  <th><%= badge_label('Premium') %></th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Cost</td>
+                <% @period.boxes.each do |box| %>
+                  <td><%= humanized_money_with_symbol box.total_cost %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <td>Target</td>
+                <% @period.boxes.each do |box| %>
+                  <td><%= humanized_money_with_symbol box.box_type.target_cost %></td>
+                <% end %>
+              </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>Difference</td>
+                  <% @period.boxes.each do |box| %>
+                    <td><%= humanized_money_with_symbol box.cost_difference %></td>
+                <% end %>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="item-count-group" class="collapse in">
+  <div class='col-sm-12 col-md-6'>
+  <ul class="list-group m-t m-b-0">
     <li class="list-group-header">
-      Forecast
-      <span class='f-r'><%= @period.total_forecast %></span>
+      Item Count
     </li>
-    <% @period.boxes.each do |box| %>
     <li class="list-group-item">
-      <%= link_to period_box_path(period_id: @period.id, id: box.id) do %>
-        <%= badge_label(box.box_type.name) %>
-      <% end %>
-      <span class='f-r'><%= box.forecast %></span>
+      <div class="row">
+        <div class="col-sm-12 table-responsive">
+          <table class="table" data-sort="table">
+            <thead>
+              <tr>
+                <th>Category name</th>
+                <th><%= badge_label('Trial') %></th>
+                <th><%= badge_label('Regular') %></th>
+                <th><%= badge_label('Premium') %></th>
+              </tr>
+            </thead>
+            <tbody>
+          <% @period.categories.each do |category| %>
+            <tr>
+              <td><%= category.name %></td>
+              <% @period.boxes.each do |box| %>
+                <td><%= box.item_count_per_category(category.id) %></td>
+              <% end %>
+            </tr>
+            <% end %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td>
+                <% @period.boxes.each do |box| %>
+                  <td><%= box.items.count %></td>
+              <% end %>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
     </li>
-    <% end %>
   </ul>
   </div>
-  <div class='col-sm-4'>
-    <ul class="list-group">
-    <li class="list-group-header">
-      Actual
-      <span class='f-r'><%= @period.total_actual %></span>
-    </li>
-    <% @period.boxes.each do |box| %>
-    <li class="list-group-item">
-      <%= link_to period_box_path(period_id: @period.id, id: box.id) do %>
-        <%= badge_label(box.box_type.name) %>
-      <% end %>
-      <span class='f-r'><%= box.actual %></span>
-    </li>
-    <% end %>
-  </ul>
-  </div>
+</div>
 </div>

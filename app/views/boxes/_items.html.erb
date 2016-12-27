@@ -2,6 +2,7 @@
   <table class="table" data-sort="table">
     <thead>
       <tr>
+        <th>Category</th>
         <th>Brand</th>
         <th>Item Description</th>
         <th>Cost</th>
@@ -13,9 +14,10 @@
     <tbody>
   <% @items.each do |item| %>
     <tr>
+      <td><%= item.category.name %></td>
       <td><%= item.brand.name %></td>
       <td><%= item.description %></td>
-      <td><%= number_to_currency(item.unit_price_in_peso, unit: '₱') %></td>
+      <td><%= humanized_money_with_symbol item.unit_price_in_peso %></td>
       <td><%= show_checkbox(item, @period.boxes.trial) %></td>
       <td><%= show_checkbox(item, @period.boxes.regular) %></td>
       <td><%= show_checkbox(item, @period.boxes.premium) %></td>

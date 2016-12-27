@@ -15,7 +15,7 @@ class BoxesController < ApplicationController
     @box = nil
     @errors = Box.upload(params[:file])
     if @errors.empty?
-      redirect_to boxes_path, notice: 'New boxes uploaded.'
+      redirect_to periods_path, notice: 'New boxes uploaded.'
     else
       @errors.each do |error|
         flash[:error] = error

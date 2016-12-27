@@ -2,6 +2,8 @@ class Period < ApplicationRecord
 
   has_many :boxes
   has_many :box_types, through: :boxes
+  has_many :items, through: :boxes
+  has_many :categories, -> { distinct }, through: :items
 
   def total_forecast
     boxes.pluck(:forecast).inject(0){|sum,x| sum + x }

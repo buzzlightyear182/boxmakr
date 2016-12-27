@@ -16,5 +16,6 @@ class AddBoxes < ActiveRecord::Migration[5.0]
       t.belongs_to :box, index: true
       t.belongs_to :item, index: true
     end
+    add_index :box_items, [ :box_id, :item_id ], unique: true
   end
 end

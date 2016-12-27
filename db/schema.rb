@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161224185020) do
   create_table "box_items", id: false, force: :cascade do |t|
     t.integer "box_id"
     t.integer "item_id"
+    t.index ["box_id", "item_id"], name: "index_box_items_on_box_id_and_item_id", unique: true, using: :btree
     t.index ["box_id"], name: "index_box_items_on_box_id", using: :btree
     t.index ["item_id"], name: "index_box_items_on_item_id", using: :btree
   end
