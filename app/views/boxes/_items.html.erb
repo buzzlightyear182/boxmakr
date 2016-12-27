@@ -1,0 +1,30 @@
+<div class="col-sm-12 table-responsive">
+  <table class="table" data-sort="table">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Item Description</th>
+        <th>Cost</th>
+        <th>Trial</th>
+        <th>Regular</th>
+        <th>Premium</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.brand.name %></td>
+      <td><%= item.description %></td>
+      <td><%= number_to_currency(item.unit_price_in_peso, unit: '₱') %></td>
+      <td><%= show_checkbox(item, @period.boxes.trial) %></td>
+      <td><%= show_checkbox(item, @period.boxes.regular) %></td>
+      <td><%= show_checkbox(item, @period.boxes.premium) %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class='text-center'>
+    <%= custom_will_paginate @items %>
+  </div>
+</div>
+<%= javascript_include_tag "item_checkbox.js" %>

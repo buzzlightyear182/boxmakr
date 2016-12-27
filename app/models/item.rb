@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   validates :description, :brand, :category, presence: true
   belongs_to :brand
   belongs_to :category
+  has_and_belongs_to_many :boxes, join_table: :box_items
 
   monetize :case_price_centavos
 
@@ -16,6 +17,12 @@ class Item < ApplicationRecord
     unless case_dimension_length.nil?
       (case_dimension_length * case_dimension_width * case_dimension_height).round(4)
     end
+  end
+
+  def unit_price_in_peso
+    exchange_rate = ExchangeRate.find_by_base_currency(case_price_currency)
+    peso_price = exchange_rate.amount * unit_price
+    peso_price.round(2)
   end
 
   def self.upload(file)

@@ -11,9 +11,11 @@ module BoxesHelper
     end
   end
 
-  def check?(month_date)
-    if Date.today.beginning_of_month == month_date
-      icon('check', :class => 'text-success')
+  def show_checkbox(item, box)
+    if box.has_item?(item)
+      render 'checked', :item => item, box: box
+    else
+      render 'unchecked', :item => item, box: box
     end
   end
 

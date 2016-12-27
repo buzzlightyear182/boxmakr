@@ -19,10 +19,11 @@ Rails.application.routes.draw do
   resources :periods, only: [:show, :index] do
     resources :boxes, except: [:index] do
       collection do
-       get 'select_items', as: "select_items"
+       get 'select_items'
       end
       member do
-        post 'add_item', as: "add_items"
+        post 'add_item/:item_id' => 'boxes#add_item', as: :add_item_to
+        post 'remove_item/:item_id' => 'boxes#remove_item', as: :remove_item
       end
     end
   end

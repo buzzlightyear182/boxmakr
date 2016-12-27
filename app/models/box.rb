@@ -3,16 +3,17 @@ class Box < ApplicationRecord
   belongs_to :period
   belongs_to :box_type
 
+  has_and_belongs_to_many :items, join_table: :box_items
+
   validates_presence_of :box_type_id
 
   # scope :find_lazy, -> (id) { where(:id => id) }
-  scope :for_trial, -> { where(box_type_id: 1) }
-  scope :for_regular, -> { where(box_type_id: 2) }
-  scope :for_premium, -> { where(box_type_id: 3) }
-  scope :by_month, -> (period_id) { where(period_id: period_id) }
+  scope :trial, -> { where(box_type_id: 1).first }
+  scope :regular, -> { where(box_type_id: 2).first }
+  scope :premium, -> { where(box_type_id: 3).first }
 
   def name
-    self.period.month_date.strftime('%b %Y').to_s + " - " + self.box_type.name
+    self.period.month_date.strftime('%b %Y').to_s + " " + self.box_type.name + " box"
   end
 
   def self.upload(file)
@@ -39,5 +40,13 @@ class Box < ApplicationRecord
       @errors << "No file loaded"
     end
     return @errors
+  end
+
+  def has_item?(item)
+    items.include? item
+  end
+
+  def add_item(item)
+    items << item
   end
 end

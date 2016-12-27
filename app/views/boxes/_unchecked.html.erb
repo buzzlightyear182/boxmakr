@@ -1,0 +1,6 @@
+<div class="checkbox custom-control custom-checkbox item-checkbox">
+  <label>
+    <%= check_box_tag "#{item.description.downcase}_in_#{box.name.downcase}", {}, false, data: {item_id: item.id, box_id: box.id} %>
+    <span class="custom-control-indicator"></span>
+  </label>
+</div>

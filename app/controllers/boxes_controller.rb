@@ -1,7 +1,7 @@
 class BoxesController < ApplicationController
 
-  before_action :set_period, only: [:show, :edit, :update, :destroy, :new, :create]
-  before_action :find_box, only: [:show, :edit, :update, :destroy]
+  before_action :set_period, except: [:upload, :import]
+  before_action :find_box, except: [:upload, :new, :import, :select_items]
 
   # def index
   #   @q = Box.ransack(params[:q])
@@ -61,6 +61,35 @@ class BoxesController < ApplicationController
     redirect_to period_path(@period.id)
   end
 
+  def select_items
+    flash[:notice] = nil
+    flash[:error] = nil
+    @q = Item.ransack(params[:q])
+    @items = @q.result.paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def add_item
+    item = Item.find_by_id(params[:item_id])
+    @box.items << item
+    flash[:notice] = "#{item.description} has been added to #{@box.name}"
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def remove_item
+    item = Item.find_by_id(params[:item_id])
+    @box.items.delete(item)
+    flash[:notice] = "#{item.description} has been removed from #{@box.name}"
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     def box_params
       params.require(:box).permit(:forecast, :actual, :box_type_id, :month_date)
@@ -72,6 +101,10 @@ class BoxesController < ApplicationController
 
     def set_period
       @period = Period.find(params[:period_id])
+    end
+
+    def item_params
+      params.require(:item).permit(:item_id)
     end
 
 end
