@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   monetize :case_price_centavos
 
   def unit_price
-    (case_price_centavos/100.to_f)/case_size
+    Money.new((case_price_centavos)/case_size)
   end
 
   def case_cbm
@@ -21,8 +21,8 @@ class Item < ApplicationRecord
 
   def unit_price_in_peso
     exchange_rate = ExchangeRate.find_by_base_currency(case_price_currency)
-    peso_price = exchange_rate.amount * unit_price
-    peso_price.round(2)
+    peso_price = (exchange_rate.amount_centavos/100.to_f) * unit_price
+    Money.new(peso_price)
   end
 
   def self.upload(file)

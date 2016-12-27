@@ -1,7 +1,7 @@
 <div class='col-sm-12 col-md-6'>
   <ul class="list-group m-t m-b-0">
     <li class="list-group-header">
-      Counters
+      Quick Check
     </li>
     <li class="list-group-item">
       <div class="row">
@@ -17,13 +17,13 @@
             </thead>
             <tbody>
             <tr>
-              <td>Cost</td>
+              <td>Box Cost</td>
               <% @period.boxes.each do |box| %>
                 <td><%= humanized_money_with_symbol box.total_cost %></td>
               <% end %>
             </tr>
             <tr>
-              <td>Count</td>
+              <td>Item Count</td>
               <% @period.boxes.each do |box| %>
                 <td><%= box.items.count %></td>
               <% end %>

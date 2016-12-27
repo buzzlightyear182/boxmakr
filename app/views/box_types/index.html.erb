@@ -24,13 +24,13 @@
     </li>
     <li class="list-group-item">
       Single Price
-      <span class='f-r'>₱ <%= box_type.base_price %></span>
+      <span class='f-r'><%= humanized_money_with_symbol box_type.base_price %></span>
     </li>
     <li class="list-group-item">
       Quarter Box Price
        <span class='f-r'>
         <% unless box_type.name == 'Trial' %>
-        ₱ <%= box_type.quarter_price %>.00
+        <%= humanized_money_with_symbol box_type.quarter_price %>
         <% else %>
           -
         <% end %>
@@ -40,7 +40,7 @@
       Bi-annual Box Price
       <span class='f-r'>
         <% unless box_type.name == 'Trial' %>
-        ₱ <%= box_type.biannual_price %>.00
+        <%= humanized_money_with_symbol box_type.biannual_price %>
         <% else %>
           -
         <% end %>
@@ -50,7 +50,7 @@
       Annual Box Price
       <span class='f-r'>
       <% unless box_type.name == 'Trial' %>
-        ₱ <%= box_type.annual_price %>.00
+        <%= humanized_money_with_symbol box_type.annual_price %>
         <% else %>
           -
         <% end %>
@@ -59,11 +59,11 @@
     </li>
     <li class="list-group-item">
       Threshold
-      <span class='f-r'>₱ <%= box_type.threshold %></span>
+      <span class='f-r'><%= humanized_money_with_symbol box_type.threshold %></span>
     </li>
     <li class="list-group-item">
       Target Cost
-      <span class='f-r'>₱ <%= box_type.target_cost %>.00</span>
+      <span class='f-r'><%= humanized_money_with_symbol box_type.target_cost %></span>
     </li>
     <li class="list-group-item">
       Max Item Count

@@ -6,15 +6,15 @@ class BoxType < ApplicationRecord
   has_many :boxes
 
   def quarter_price
-    (base_price_centavos/100 * 0.92).round
+    Money.new(base_price_centavos * 0.92)
   end
 
   def biannual_price
-    (base_price_centavos/100 * 0.88).round
+    Money.new(base_price_centavos * 0.88)
   end
 
   def annual_price
-    (base_price_centavos/100 * 0.80).round
+    Money.new(base_price_centavos * 0.80)
   end
 
   def target_cost

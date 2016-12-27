@@ -13,7 +13,7 @@
   <% @items.each do |item| %>
     <tr>
       <td><%= link_to item.id, item_path(item.id) %></td>
-      <td><%= item.brand.name %></td>
+      <td><%= link_to item.brand.name, brand_path(item.brand.id) %></td>
       <td><%= link_to item.description, item_path(item.id) %></td>
       <td><%= item.unit_size %></td>
       <td><%= link_to icon('edit'), edit_item_path(item.id),'data-turbolinks' => false %></td>

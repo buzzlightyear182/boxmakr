@@ -35,7 +35,7 @@
           <% end %>
         </td>
         <td><%= exchange_rate.base_currency %></td>
-        <td>₱ <%= exchange_rate.amount %></td>
+        <td><%= humanized_money_with_symbol exchange_rate.amount %></td>
         <td><%= exchange_rate.date.strftime('%d %b %Y') %></td>
         <td><%= link_to icon('edit'), edit_exchange_rate_path(exchange_rate.id),'data-turbolinks' => false %></td>
       </tr>
